@@ -2,7 +2,7 @@
 
 IT incident application to trace all the incidents reported by employees.
 
-# Non-Functional Features
+## Non-Functional Features
 
     - SEO support added : robots.txt, sitemap.xml, sitemap generator on every build run
     - CSP header added for all route : XSS protection, content security
@@ -16,3 +16,11 @@ IT incident application to trace all the incidents reported by employees.
     - Bundle analyzer support
     - Overrided 404, 500 & Error page
     - Enabled SWCMinify : Replaced Terser with SWC for minifying JavaScript
+
+## Dependencies
+
+    - React :  [18.2](https://react.dev/learn/installation)
+    - MUI : [5.15](https://mui.com/)
+    - MongoDB : [6.4](https://www.mongodb.com/)
+    - Formik : [2.4](https://formik.org/)
+    - Snyk : [1.12](https://snyk.io/)
