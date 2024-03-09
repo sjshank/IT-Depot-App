@@ -1,7 +1,16 @@
-export default function HomePage() {
+import { NextPageWithLayout } from "@/layout";
+import Button from "@mui/material/Button";
+import WithPageLayout from "@/hoc/withPageLayout";
+
+const HomePage: NextPageWithLayout = () => {
   return (
     <>
-      <main></main>
+      <p>Hello</p>
+      <Button color="primary" variant="contained">
+        Primary
+      </Button>
     </>
   );
-}
+};
+
+export default WithPageLayout(HomePage);

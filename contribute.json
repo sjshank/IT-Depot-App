@@ -1,0 +1,12 @@
+{
+  "name": "It Garage",
+  "description": "An incident tracing application reported by employees in organization.",
+  "repository": {
+    "url": "https://github.com/sjshank/IT-Depot-App",
+    "license": "MIT"
+  },
+  "urls": {
+    "dev": "https://2dk5bzj1-3000.inc1.devtunnels.ms/"
+  },
+  "keywords": ["nextjs", "reactjs", "css", "html5", "javascript"]
+}
