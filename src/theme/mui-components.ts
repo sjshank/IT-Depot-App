@@ -14,6 +14,18 @@ const CustomMuiComponents: Components = {
       },
     },
   },
+  MuiAvatar: {
+    styleOverrides: {
+      colorDefault: {
+        backgroundColor: "#FF7518",
+      },
+    },
+  },
+  MuiTextField: {
+    defaultProps: {
+      placeholder: "Enter your value",
+    },
+  },
 };
 
 export default { components: CustomMuiComponents as Components };

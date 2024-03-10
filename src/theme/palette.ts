@@ -9,13 +9,17 @@ const CustomPaletteOptions: Partial<PaletteOptions> = {
   mode: "light",
   //override default primary, secondary, error hex code
   primary: {
-    main: "#C34A36",
+    main: "#663399",
   },
   secondary: {
     main: "#334B48",
   },
   error: {
     main: red.A400,
+  },
+  text: {
+    primary: "#1B1B1B",
+    secondary: "#242124",
   },
 };
 

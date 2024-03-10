@@ -5,6 +5,7 @@ import type { NextPage } from "next";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
+import MainNavigation from "./main-navigation";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <MainNavigation />
         <main>{children}</main>
       </ThemeProvider>
     </>
