@@ -1,69 +1,38 @@
-import React from "react";
-import Stack from "@mui/material/Stack";
-import Container from "@mui/material/Container";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import EmailRounded from "@mui/icons-material/EmailRounded";
-import Button from "@mui/material/Button";
-import { useRouter } from "next/router";
-import Typography from "@mui/material/Typography";
+import React, { useCallback } from "react";
+import { NextRouter, useRouter } from "next/router";
+import { toast } from "react-toastify";
+import WithFormLayout from "@/hoc/withFormLayout";
+import Login from "./login";
 
-const StartingPage: React.FunctionComponent<{}> = (): JSX.Element => {
-  const router = useRouter();
-  const handleEmailSubmitAction = (e: React.FormEvent) => {
-    e.preventDefault();
-    router.push("/tickets");
-  };
-  return (
-    <Container sx={{ py: 4 }}>
-      <Stack justifyContent="center" alignItems="center" gap={3}>
-        <Typography
-          variant="h4"
-          component="h1"
-          fontWeight={500}
-          sx={{
-            textAlign: "center",
-            textAlignLast: "center",
-          }}
-        >
-          Welcome to Next IT Garage !
-        </Typography>
-        <FormControl
-          component="form"
-          variant="standard"
-          sx={{ width: { md: "50%" } }}
-          onSubmit={handleEmailSubmitAction}
-          noValidate
-        >
-          <TextField
-            id="email-id-input"
-            label="Email Id"
-            size="medium"
-            type="email"
-            placeholder="Your email address"
-            required
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailRounded fontSize="large" />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-            sx={{ paddingBottom: 1 }}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{ my: 3, alignSelf: "center" }}
-          >
-            Proceed
-          </Button>
-        </FormControl>
-      </Stack>
-    </Container>
-  );
+const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
+  const router: NextRouter = useRouter();
+
+  const handleSignInAction = useCallback(async (email: string | undefined) => {
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify(email),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      if (data.status !== "Success") {
+        data.errors.forEach((error: string) =>
+          toast.error(error, { theme: "dark" })
+        );
+        return;
+      }
+      router.push("/dashboard");
+    } catch (err: any) {
+      console.log("----", err.message);
+    }
+  }, []);
+  return <Login onSubmitAction={handleSignInAction} />;
 };
+
+const StartingPage = WithFormLayout(LandingPage, {
+  header: "Welcome to Next IT Garage !",
+});
 
 export default StartingPage;

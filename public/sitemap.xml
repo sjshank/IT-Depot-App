@@ -4,19 +4,19 @@
     <changefreq>hourly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/tickets/[ticketId]</loc>
+    <loc>http://localhost:3000/dashboard/index</loc>
     <changefreq>hourly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/tickets/index</loc>
+    <loc>http://localhost:3000/ticket/[ticketId]</loc>
     <changefreq>hourly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/tickets/create/index</loc>
+    <loc>http://localhost:3000/ticket/create/index</loc>
     <changefreq>hourly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/tickets/update/[ticketId]</loc>
+    <loc>http://localhost:3000/ticket/update/[ticketId]</loc>
     <changefreq>hourly</changefreq>
   </url>
 </urlset>

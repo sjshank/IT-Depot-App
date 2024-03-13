@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { AppCacheProvider } from "@mui/material-nextjs/v14-pagesRouter";
 import { NextPageWithLayout } from "@/layout";
+import "react-toastify/dist/ReactToastify.min.css";
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;

@@ -5,7 +5,7 @@ const CustomMuiComponents: Components = {
   MuiButton: {
     styleOverrides: {
       root: {
-        fontSize: "1rem",
+        fontSize: "0.85rem",
         letterSpacing: 1,
         fontWeight: 600,
         borderRadius: 6,
@@ -24,6 +24,14 @@ const CustomMuiComponents: Components = {
   MuiTextField: {
     defaultProps: {
       placeholder: "Enter your value",
+    },
+  },
+  MuiCard: {
+    styleOverrides: {
+      root: {
+        minWidth: 300,
+        maxWidth: 400,
+      },
     },
   },
 };

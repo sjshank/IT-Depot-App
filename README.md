@@ -16,6 +16,13 @@ IT incident application to trace all the incidents reported by employees.
     - Bundle analyzer support
     - Overrided 404, 500 & Error page
     - Enabled SWCMinify : Replaced Terser with SWC for minifying JavaScript
+    - Express-validator : NextJS APIs validator with Middleware to integrate with express-validator
+    - Formik & Yup : Implemented to render forms, submit data & client validation
+    - useMemo, React.memo, useCallback : Memiozed & optimize component performance
+    - HOC :  Reuse component logic, form layout, page layout
+    - Constants : Static dropdown values
+    - ValidationRules : Added to validate & sanitize inputs at API route handler
+    - Helper : utility functions added
 
 ## Dependencies
 

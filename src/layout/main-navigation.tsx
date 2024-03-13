@@ -24,7 +24,7 @@ const MainNavigation: React.FunctionComponent<{}> = (): JSX.Element => {
           }}
         >
           <Link
-            href="/tickets/create"
+            href="/ticket/create"
             component={NextLink}
             onClick={handleCloseNavMenu}
             role="navigation"

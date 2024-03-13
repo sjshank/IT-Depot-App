@@ -1,5 +1,18 @@
 import { PaletteOptions } from "@mui/material";
 import { red } from "@mui/material/colors";
+
+declare module "@mui/material/styles" {
+  interface Palette {
+    pumpkin: Palette["primary"];
+    antiFlashWhite: Palette["primary"];
+  }
+
+  interface PaletteOptions {
+    pumpkin?: PaletteOptions["primary"];
+    antiFlashWhite?: PaletteOptions["primary"];
+  }
+}
+
 const CustomPaletteOptions: Partial<PaletteOptions> = {
   //override default app background
   background: {
@@ -15,11 +28,17 @@ const CustomPaletteOptions: Partial<PaletteOptions> = {
     main: "#334B48",
   },
   error: {
-    main: red.A400,
+    main: "#FF3333",
   },
   text: {
     primary: "#1B1B1B",
-    secondary: "#242124",
+    secondary: "#555555",
+  },
+  pumpkin: {
+    main: "#FF7518",
+  },
+  antiFlashWhite: {
+    main: "#F2F3F4",
   },
 };
 
