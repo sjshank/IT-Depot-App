@@ -2,7 +2,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Avatar from "@mui/material/Avatar";
 import React from "react";
-import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";

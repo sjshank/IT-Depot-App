@@ -15,8 +15,22 @@ export type TTicket = {
   priority: Range<1, 6>;
   description: string;
   category: string;
-  //   ticketId: number;
-  // status: "Not Started" | "Started" | "Done"
-  // progress: number;
-  // createdOn: string;
+  ticketId: string;
+  status: "not started" | "started" | "done";
+  progress: string;
+  createdBy: string;
+  assignedTo: string;
 };
+
+export interface ICreateTicketFormFields {
+  title: string;
+  priority: number;
+  description: string;
+  category: string;
+  status: string;
+  progress: number;
+}
+
+export interface ILogInFormFields {
+  email: string;
+}

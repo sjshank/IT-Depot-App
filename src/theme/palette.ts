@@ -25,14 +25,14 @@ const CustomPaletteOptions: Partial<PaletteOptions> = {
     main: "#663399",
   },
   secondary: {
-    main: "#334B48",
+    main: "#403d39",
   },
   error: {
     main: "#FF3333",
   },
   text: {
     primary: "#1B1B1B",
-    secondary: "#555555",
+    secondary: "#66666e",
   },
   pumpkin: {
     main: "#FF7518",

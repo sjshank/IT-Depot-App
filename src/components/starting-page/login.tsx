@@ -1,33 +1,23 @@
 import React from "react";
-import * as yup from "yup";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import EmailRounded from "@mui/icons-material/EmailRounded";
 import { validateEmail } from "@/utils/helper";
 import WithFormikForm from "@/hoc/WithFormikForm";
 import { FormikConfig } from "formik";
+import { LogInSchema } from "@/utils/yup-schemas";
+import { ILogInFormFields } from "@/types/ticket";
 
 type TLoginProps = {
   onSubmitAction: (email: string) => void;
   formik?: any;
 };
 
-interface LogInFields {
-  email: string;
-}
-
-const logInSchema = yup.object({
-  email: yup
-    .string()
-    .email("Enter a valid e-mail address")
-    .required("Email is required"),
-});
-
 const formikOptions: Omit<FormikConfig<any>, "onSubmit"> = {
   initialValues: {
     email: "",
   },
-  validate(values: LogInFields) {
+  validate(values: ILogInFormFields) {
     let errors = {};
     const isValidEmail = validateEmail(values.email);
     if (!isValidEmail) {
@@ -35,7 +25,7 @@ const formikOptions: Omit<FormikConfig<any>, "onSubmit"> = {
     }
     return { email: isValidEmail } as typeof values;
   },
-  validationSchema: logInSchema,
+  validationSchema: LogInSchema,
 };
 
 const SignIn: React.FunctionComponent<TLoginProps> = ({

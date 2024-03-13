@@ -5,7 +5,7 @@ import { CreateTicketSchema } from "@/utils/yup-schemas";
 import { ICreateTicketFormFields } from "@/types/ticket";
 import ConnectedForm from "./connected-form";
 
-type TCreateTicketProps = {
+type TUpdateTicketProps = {
   onSubmitAction: (formFields: ICreateTicketFormFields) => void;
   formik?: any;
 };
@@ -23,16 +23,16 @@ const formikOptions: Omit<FormikConfig<any>, "onSubmit"> = {
   validationSchema: CreateTicketSchema,
 };
 
-const CreateTicketFormik: React.FunctionComponent<TCreateTicketProps> = ({
+const UpdateTicketFormik: React.FunctionComponent<TUpdateTicketProps> = ({
   formik,
-}: TCreateTicketProps) => {
-  return <ConnectedForm formik={formik} />;
+}: TUpdateTicketProps) => {
+  return <ConnectedForm formik={formik} isCreate={true} />;
 };
 
-const CreateForm = WithFormikForm({
-  WrapperComponent: CreateTicketFormik,
+const UpdateForm = WithFormikForm({
+  WrapperComponent: UpdateTicketFormik,
   formikOptions,
-  buttonLabel: "Submit",
+  buttonLabel: "Update",
 });
 
-export default CreateForm;
+export default UpdateForm;

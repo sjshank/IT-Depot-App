@@ -1,9 +1,21 @@
 import Stack from "@mui/material/Stack";
 import React from "react";
-import TicketMetricItem from "./ticket-metric-item";
 import MuiAvatar from "@/ui/MuiAvatar";
+import MuiChip from "@/ui/MuiChip";
 
-const TicketMetrics = () => {
+type TMetricProps = {
+  numberOfTickets: number;
+  categories: number;
+  progress: number;
+  completed: number;
+};
+
+const TicketMetrics: React.FunctionComponent<TMetricProps> = ({
+  numberOfTickets,
+  categories,
+  completed,
+  progress,
+}: TMetricProps): JSX.Element => {
   return (
     <Stack
       component="div"
@@ -12,16 +24,16 @@ const TicketMetrics = () => {
       flexWrap="wrap"
       gap={2}
     >
-      <TicketMetricItem
+      <MuiChip
         label="Total Tickets"
-        avatar={<MuiAvatar>15</MuiAvatar>}
+        avatar={<MuiAvatar>{numberOfTickets}</MuiAvatar>}
       />
-      <TicketMetricItem label="Categories" avatar={<MuiAvatar>3</MuiAvatar>} />
-      <TicketMetricItem
-        label="In Progress"
-        avatar={<MuiAvatar>10</MuiAvatar>}
+      <MuiChip
+        label="Categories"
+        avatar={<MuiAvatar>{categories}</MuiAvatar>}
       />
-      <TicketMetricItem label="Completed" avatar={<MuiAvatar>5</MuiAvatar>} />
+      <MuiChip label="In Progress" avatar={<MuiAvatar>{progress}</MuiAvatar>} />
+      <MuiChip label="Completed" avatar={<MuiAvatar>{completed}</MuiAvatar>} />
     </Stack>
   );
 };

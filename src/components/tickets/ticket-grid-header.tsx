@@ -11,7 +11,11 @@ const TicketGridHeader: React.FunctionComponent<TCategoryHeaderProps> = ({
 }): JSX.Element => {
   return (
     <Divider textAlign="center" role="presentation" sx={{ my: 4 }}>
-      <Typography variant="h5" component="p">
+      <Typography
+        variant="h5"
+        component="h2"
+        sx={{ textTransform: "capitalize" }}
+      >
         {heading}
       </Typography>
     </Divider>

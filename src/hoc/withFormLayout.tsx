@@ -1,11 +1,12 @@
-import Layout from "@/layout";
-import type { ReactElement } from "react";
 import React from "react";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import MuiPageHeader from "@/ui/MuiPageHeader";
 
-const WithFormLayout = (WrapperComponent: React.ElementType, props: any) => {
+const WithFormLayout = (
+  WrapperComponent: React.ElementType,
+  props: any
+): React.ElementType => {
   const { header } = props;
   const ComponentWithFormLayout = (props: any) => {
     return (

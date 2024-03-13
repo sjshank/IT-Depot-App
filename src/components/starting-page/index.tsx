@@ -7,7 +7,7 @@ import Login from "./login";
 const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
   const router: NextRouter = useRouter();
 
-  const handleSignInAction = useCallback(async (email: string | undefined) => {
+  const handleLogIn = useCallback(async (email: string | undefined) => {
     try {
       const res = await fetch("/api/login", {
         method: "POST",
@@ -28,7 +28,7 @@ const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
       console.log("----", err.message);
     }
   }, []);
-  return <Login onSubmitAction={handleSignInAction} />;
+  return <Login onSubmitAction={handleLogIn} />;
 };
 
 const StartingPage = WithFormLayout(LandingPage, {

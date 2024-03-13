@@ -1,16 +1,16 @@
 import React, { useCallback } from "react";
-import CreateForm from "../forms/create";
 import WithFormLayout from "@/hoc/withFormLayout";
 import { toast } from "react-toastify";
 import { ICreateTicketFormFields } from "@/types/ticket";
 import { NextRouter, useRouter } from "next/router";
+import UpdateForm from "../forms/update";
 
-const SubmitNewTicket = () => {
+const ModifyTicketDetails = () => {
   const router: NextRouter = useRouter();
-  const handleSubmitTicket = useCallback(
+  const handleUpdateTicket = useCallback(
     async (formFields: ICreateTicketFormFields) => {
       try {
-        const res = await fetch("/api/ticket/create", {
+        const res = await fetch("/api/ticket/update", {
           method: "POST",
           body: JSON.stringify({ ...formFields }),
           headers: {
@@ -31,11 +31,11 @@ const SubmitNewTicket = () => {
     },
     []
   );
-  return <CreateForm onSubmitAction={handleSubmitTicket} />;
+  return <UpdateForm onSubmitAction={handleUpdateTicket} />;
 };
 
-const CreateTicket = WithFormLayout(SubmitNewTicket, {
-  header: "Report Incident",
+const UpdateTicket = WithFormLayout(ModifyTicketDetails, {
+  header: "Update Incident Details",
 });
 
-export default CreateTicket;
+export default UpdateTicket;

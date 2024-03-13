@@ -33,7 +33,7 @@ export default async function handler(
       status,
       priority,
       progress,
-      ticketId: customAlphabet(`1234567890abcdef`, 10)(7),
+      ticketId: customAlphabet(`1234567890`, 10)(6),
       createdBy: "sshankariya@gmail.com",
       assignedTo: "djsaurabh8@gmail.com",
     });

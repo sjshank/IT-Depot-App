@@ -8,3 +8,32 @@ export const validateEmail = (email: string): string => {
   }
   return errStr;
 };
+
+export const groupBy = (list: any[], key: string) => {
+  return list.reduce(function (rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
+
+export const populateTicketMetrics = (
+  result: any[],
+  ticketsGroupedByCategory: any
+) => {
+  return {
+    ...result.reduce(
+      (acc: any, curr: any) => {
+        curr["status"] !== "done" ? acc["progress"]++ : acc["completed"]++;
+        return acc;
+      },
+      {
+        progress: 0,
+        completed: 0,
+      }
+    ),
+    numberOfTickets: result.length,
+    categories: Object.keys(ticketsGroupedByCategory).sort(
+      (a: string, b: string) => a.localeCompare(b)
+    ),
+  };
+};

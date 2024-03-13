@@ -14,7 +14,7 @@ const WithFormikForm = ({
   WrapperComponent,
   formikOptions,
   buttonLabel = "Proceed",
-}: TFormikConfigProps) => {
+}: TFormikConfigProps): React.ElementType => {
   const FormWithFormikComponent = (props: any) => {
     const { onSubmitAction } = props;
     const formik = useFormik({
