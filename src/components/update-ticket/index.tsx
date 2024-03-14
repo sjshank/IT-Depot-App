@@ -4,7 +4,9 @@ import { ICreateTicketFormFields, TTicket } from "@/types/ticket";
 import UpdateForm from "../forms/update";
 import useNotification from "@/hooks/useNotification";
 
-const ModifyTicketDetails = (ticket: TTicket) => {
+const ModifyTicketDetails: React.FunctionComponent<any> = (
+  ticket: TTicket
+): JSX.Element => {
   const [notification, setNotification] = useNotification();
 
   const handleUpdateTicket = useCallback(

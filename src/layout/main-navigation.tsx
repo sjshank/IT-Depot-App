@@ -26,7 +26,7 @@ const MainNavigation: React.FunctionComponent<{}> = (): JSX.Element => {
             href="/ticket/create"
             component={NextLink}
             onClick={handleCloseNavMenu}
-            role="navigation"
+            role="link"
             sx={{ my: 2, color: "#ffffff", display: "block" }}
           >
             Submit Ticket

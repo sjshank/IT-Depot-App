@@ -2,19 +2,17 @@ import React from "react";
 import NextLink from "next/link";
 import Link from "@mui/material/Link";
 
-const TicketCardActions: React.FunctionComponent<{
+type TCardActionProps = {
   id: string;
   status: string;
   onViewTicketModal: () => void;
-}> = ({
+};
+
+const TicketCardActions: React.FunctionComponent<TCardActionProps> = ({
   id,
   status,
   onViewTicketModal,
-}: {
-  id: string;
-  status: string;
-  onViewTicketModal: () => void;
-}): JSX.Element => {
+}: TCardActionProps): JSX.Element => {
   return (
     <>
       <Link
@@ -31,7 +29,7 @@ const TicketCardActions: React.FunctionComponent<{
         <Link
           href={`/ticket/update/${id}`}
           component={NextLink}
-          role="navigation"
+          role="link"
           color="secondary"
           padding={1}
         >

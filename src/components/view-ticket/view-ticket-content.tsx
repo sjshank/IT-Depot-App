@@ -1,13 +1,10 @@
 import { TTicket } from "@/types/ticket";
-import {
-  Box,
-  Divider,
-  Rating,
-  Stack,
-  Typography,
-  TypographyProps,
-  styled,
-} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
+import Rating from "@mui/material/Rating";
+import { Typography, TypographyProps } from "@mui/material";
 import React from "react";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import LocalFireDepartmentOutlinedIcon from "@mui/icons-material/LocalFireDepartmentOutlined";
@@ -24,7 +21,11 @@ const CustomizedTypograpghy = styled(Typography)<TypographyProps>(
   })
 );
 
-const TicketContent = ({ ticket }: { ticket: TTicket }) => {
+const TicketContent: React.FunctionComponent<{ ticket: TTicket }> = ({
+  ticket,
+}: {
+  ticket: TTicket;
+}): JSX.Element => {
   return (
     <Stack divider={<Divider />} gap={2}>
       <Box>

@@ -12,7 +12,7 @@ const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
     try {
       const res = await fetch("/api/login", {
         method: "POST",
-        body: JSON.stringify({ email: null }),
+        body: JSON.stringify(email),
         headers: {
           "Content-Type": "application/json",
         },
