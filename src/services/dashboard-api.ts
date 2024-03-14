@@ -1,10 +1,8 @@
-import mongodbConnection from "@/lib/db";
 import { groupBy, populateTicketMetrics } from "@/utils/helper";
+import { connectDbCollection } from "./connect-db";
 
 export const retrieveDashboardDataForUser = async () => {
-  const connection = await mongodbConnection;
-  const db = await connection.db(process.env.MONGODB_NAME);
-  const ticketCollection = await db.collection("tickets");
+  const ticketCollection = await connectDbCollection("tickets");
   const result = await ticketCollection
     .find(
       {

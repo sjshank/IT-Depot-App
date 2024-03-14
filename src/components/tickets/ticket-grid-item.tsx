@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
@@ -13,6 +13,7 @@ import Box from "@mui/material/Box";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import MuiSlider from "@/ui/MuiSlider";
 import TicketCardActions from "./ticket-card-actions";
+import { TicketContext } from "@/context/ticket-context";
 
 const TicketGridItem = (ticket: TTicket) => {
   const {
@@ -24,6 +25,10 @@ const TicketGridItem = (ticket: TTicket) => {
     ticketId,
     assignedTo,
   } = ticket;
+  const { showTicketViewModal } = useContext(TicketContext);
+  const handleViewTicketModalAction = () => {
+    showTicketViewModal(ticket);
+  };
   return (
     <Grid item>
       <Card variant="elevation">
@@ -77,7 +82,7 @@ const TicketGridItem = (ticket: TTicket) => {
         >
           <div>
             <Chip
-              color="primary"
+              color={`${status === "done" ? "success" : "primary"}`}
               sx={{
                 textTransform: "capitalize",
               }}
@@ -85,7 +90,11 @@ const TicketGridItem = (ticket: TTicket) => {
             />
           </div>
           <div>
-            <TicketCardActions id={ticketId} />
+            <TicketCardActions
+              id={ticketId}
+              status={status}
+              onViewTicketModal={handleViewTicketModalAction}
+            />
           </div>
         </CardActions>
       </Card>

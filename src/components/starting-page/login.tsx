@@ -6,11 +6,12 @@ import { validateEmail } from "@/utils/helper";
 import WithFormikForm from "@/hoc/WithFormikForm";
 import { FormikConfig } from "formik";
 import { LogInSchema } from "@/utils/yup-schemas";
-import { ILogInFormFields } from "@/types/ticket";
+import { ILogInFormFields, TNotification } from "@/types/ticket";
 
 type TLoginProps = {
   onSubmitAction: (email: string) => void;
   formik?: any;
+  notification: TNotification;
 };
 
 const formikOptions: Omit<FormikConfig<any>, "onSubmit"> = {

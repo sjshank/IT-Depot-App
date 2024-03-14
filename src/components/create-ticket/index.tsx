@@ -1,27 +1,30 @@
 import React, { useCallback } from "react";
 import CreateForm from "../forms/create";
 import WithFormLayout from "@/hoc/withFormLayout";
-import { toast } from "react-toastify";
 import { ICreateTicketFormFields } from "@/types/ticket";
 import { NextRouter, useRouter } from "next/router";
+import useNotification from "@/hooks/useNotification";
 
 const SubmitNewTicket = () => {
+  const [notification, setNotification] = useNotification();
   const router: NextRouter = useRouter();
   const handleSubmitTicket = useCallback(
     async (formFields: ICreateTicketFormFields) => {
       try {
         const res = await fetch("/api/ticket/create", {
           method: "POST",
-          body: JSON.stringify({ ...formFields }),
+          body: JSON.stringify({ ...formFields, status: null }),
           headers: {
             "Content-Type": "application/json",
           },
         });
         const data = await res.json();
         if (data.status !== "Success") {
-          data.errors.forEach((error: string) =>
-            toast.error(error, { theme: "dark" })
-          );
+          setNotification((notification) => ({
+            ...notification,
+            type: "error",
+            messages: data.errors,
+          }));
           return;
         }
         router.push("/dashboard");
@@ -31,11 +34,16 @@ const SubmitNewTicket = () => {
     },
     []
   );
-  return <CreateForm onSubmitAction={handleSubmitTicket} />;
+  return (
+    <CreateForm
+      onSubmitAction={handleSubmitTicket}
+      notification={notification}
+    />
+  );
 };
 
-const CreateTicket = WithFormLayout(SubmitNewTicket, {
+const CreateTicketContainer = WithFormLayout(SubmitNewTicket, {
   header: "Report Incident",
 });
 
-export default CreateTicket;
+export default CreateTicketContainer;

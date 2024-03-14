@@ -6,7 +6,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
 import MainNavigation from "./main-navigation";
-import dynamic from "next/dynamic";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -15,12 +14,6 @@ type LayoutProps = {
 const Layout: React.FunctionComponent<LayoutProps> = ({
   children,
 }): JSX.Element => {
-  const ToastContainerComp = dynamic(
-    () => import("react-toastify").then((mod) => mod.ToastContainer),
-    {
-      ssr: false,
-    }
-  );
   return (
     <>
       <Head>
@@ -31,12 +24,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
         <CssBaseline />
         <MainNavigation />
         <main style={{ marginTop: "40px" }}>
-          <>
-            {children}
-            <React.Suspense fallback={<span>loading...</span>}>
-              <ToastContainerComp />
-            </React.Suspense>
-          </>
+          <>{children}</>
         </main>
       </ThemeProvider>
     </>

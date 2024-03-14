@@ -1,3 +1,5 @@
+import { AlertColor } from "@mui/material";
+
 type Enumerate<
   N extends number,
   Acc extends number[] = []
@@ -29,8 +31,15 @@ export interface ICreateTicketFormFields {
   category: string;
   status: string;
   progress: number;
+  createdBy: string;
+  assignedTo: string;
 }
 
 export interface ILogInFormFields {
   email: string;
 }
+
+export type TNotification = {
+  type: AlertColor;
+  messages: string[];
+};

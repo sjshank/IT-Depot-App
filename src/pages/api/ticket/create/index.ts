@@ -1,5 +1,4 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import mongodbConnection from "@/lib/db";
 import { TTicket } from "@/types/ticket";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { customAlphabet } from "nanoid";
@@ -7,6 +6,7 @@ import {
   executeCreateTcktInputValidation,
   TValidationError,
 } from "@/utils/validation-rules";
+import { connectDbCollection } from "@/services/connect-db";
 
 type TData = {
   status: string;
@@ -23,10 +23,8 @@ export default async function handler(
     await executeCreateTcktInputValidation(req, res);
     const { title, description, category, status, priority, progress } =
       req.body;
-    const connection = await mongodbConnection;
-    const db = await connection.db(process.env.MONGODB_NAME);
-    const userCollection = await db.collection("tickets");
-    const result = await userCollection.insertOne({
+    const ticketCollection = await connectDbCollection("tickets");
+    const result = await ticketCollection.insertOne({
       title,
       description,
       category,

@@ -1,17 +1,17 @@
 import React, { useCallback } from "react";
 import WithFormLayout from "@/hoc/withFormLayout";
-import { toast } from "react-toastify";
-import { ICreateTicketFormFields } from "@/types/ticket";
-import { NextRouter, useRouter } from "next/router";
+import { ICreateTicketFormFields, TTicket } from "@/types/ticket";
 import UpdateForm from "../forms/update";
+import useNotification from "@/hooks/useNotification";
 
-const ModifyTicketDetails = () => {
-  const router: NextRouter = useRouter();
+const ModifyTicketDetails = (ticket: TTicket) => {
+  const [notification, setNotification] = useNotification();
+
   const handleUpdateTicket = useCallback(
     async (formFields: ICreateTicketFormFields) => {
       try {
-        const res = await fetch("/api/ticket/update", {
-          method: "POST",
+        const res = await fetch(`/api/ticket/update/${ticket.ticketId}`, {
+          method: "PATCH",
           body: JSON.stringify({ ...formFields }),
           headers: {
             "Content-Type": "application/json",
@@ -19,23 +19,35 @@ const ModifyTicketDetails = () => {
         });
         const data = await res.json();
         if (data.status !== "Success") {
-          data.errors.forEach((error: string) =>
-            toast.error(error, { theme: "dark" })
-          );
+          setNotification((notification) => ({
+            ...notification,
+            type: "error",
+            messages: data.errors,
+          }));
           return;
         }
-        router.push("/dashboard");
+        setNotification((notification) => ({
+          ...notification,
+          type: "success",
+          messages: [data.message],
+        }));
       } catch (err) {
         console.error(err);
       }
     },
     []
   );
-  return <UpdateForm onSubmitAction={handleUpdateTicket} />;
+  return (
+    <UpdateForm
+      onSubmitAction={handleUpdateTicket}
+      ticket={ticket}
+      notification={notification}
+    />
+  );
 };
 
-const UpdateTicket = WithFormLayout(ModifyTicketDetails, {
+const UpdateTicketContainer = WithFormLayout(ModifyTicketDetails, {
   header: "Update Incident Details",
 });
 
-export default UpdateTicket;
+export default UpdateTicketContainer;

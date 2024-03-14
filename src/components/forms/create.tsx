@@ -2,12 +2,13 @@ import React from "react";
 import { FormikConfig } from "formik";
 import WithFormikForm from "@/hoc/WithFormikForm";
 import { CreateTicketSchema } from "@/utils/yup-schemas";
-import { ICreateTicketFormFields } from "@/types/ticket";
+import { ICreateTicketFormFields, TNotification } from "@/types/ticket";
 import ConnectedForm from "./connected-form";
 
 type TCreateTicketProps = {
   onSubmitAction: (formFields: ICreateTicketFormFields) => void;
   formik?: any;
+  notification: TNotification;
 };
 
 const formikOptions: Omit<FormikConfig<any>, "onSubmit"> = {

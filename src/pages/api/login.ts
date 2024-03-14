@@ -1,9 +1,9 @@
-import mongodbConnection from "@/lib/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
   executeLoginInputValidation,
   TValidationError,
 } from "@/utils/validation-rules";
+import { connectDbCollection } from "@/services/connect-db";
 
 type TData = {
   status: string;
@@ -19,9 +19,7 @@ export default async function handler(
   if (req.method === "POST") {
     await executeLoginInputValidation(req, res);
     const { email } = req.body;
-    const connection = await mongodbConnection;
-    const db = await connection.db(process.env.MONGODB_NAME);
-    const userCollection = await db.collection("users");
+    const userCollection = await connectDbCollection("users");
     const result = await userCollection.findOne({ email });
     if (!result) {
       res.status(404).json({

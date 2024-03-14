@@ -1,12 +1,24 @@
-import UpdateTicket from "@/components/update-ticket";
+import UpdateTicketContainer from "@/components/update-ticket";
 import WithPageLayout from "@/hoc/withPageLayout";
 import { NextPageWithLayout } from "@/layout";
-import { NextRouter, useRouter } from "next/router";
+import type { GetServerSideProps } from "next";
+import { retrieveDetailsForTicketId } from "@/services/ticket-api";
 
-const UpdateTicketDetailsPage: NextPageWithLayout = (): JSX.Element => {
-  const router: NextRouter = useRouter();
-  console.log(router.query);
-  return <UpdateTicket />;
+const UpdateTicketDetailsPage: NextPageWithLayout = (
+  props: any
+): JSX.Element => {
+  const { ticket } = props;
+  return <UpdateTicketContainer {...ticket} />;
+};
+
+export const getServerSideProps: GetServerSideProps<any> = async (context) => {
+  const { params } = context;
+  const result = await retrieveDetailsForTicketId(params?.ticketId as string);
+  return {
+    props: {
+      ticket: { ...result },
+    },
+  };
 };
 
 export default WithPageLayout(UpdateTicketDetailsPage);

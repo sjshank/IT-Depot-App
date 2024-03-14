@@ -47,11 +47,13 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
   );
 
   const toggleProgress = useMemo((): number => {
-    return formik.values.status === "not started"
-      ? 0
-      : formik.values.status === "done"
-      ? 100
-      : formik.values.progress;
+    return Number(
+      formik.values.status === "not started"
+        ? 0
+        : formik.values.status === "done"
+        ? 100
+        : formik.values.progress
+    );
   }, [formik.values.status, formik.values.progress]);
 
   return (

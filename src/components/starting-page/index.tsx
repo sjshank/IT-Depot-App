@@ -1,26 +1,29 @@
 import React, { useCallback } from "react";
 import { NextRouter, useRouter } from "next/router";
-import { toast } from "react-toastify";
 import WithFormLayout from "@/hoc/withFormLayout";
 import Login from "./login";
+import useNotification from "@/hooks/useNotification";
 
 const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
+  const [notification, setNotification] = useNotification();
   const router: NextRouter = useRouter();
 
   const handleLogIn = useCallback(async (email: string | undefined) => {
     try {
       const res = await fetch("/api/login", {
         method: "POST",
-        body: JSON.stringify(email),
+        body: JSON.stringify({ email: null }),
         headers: {
           "Content-Type": "application/json",
         },
       });
       const data = await res.json();
       if (data.status !== "Success") {
-        data.errors.forEach((error: string) =>
-          toast.error(error, { theme: "dark" })
-        );
+        setNotification((notification) => ({
+          ...notification,
+          type: "error",
+          messages: data.errors,
+        }));
         return;
       }
       router.push("/dashboard");
@@ -28,7 +31,7 @@ const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
       console.log("----", err.message);
     }
   }, []);
-  return <Login onSubmitAction={handleLogIn} />;
+  return <Login onSubmitAction={handleLogIn} notification={notification} />;
 };
 
 const StartingPage = WithFormLayout(LandingPage, {

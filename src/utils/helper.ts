@@ -17,11 +17,11 @@ export const groupBy = (list: any[], key: string) => {
 };
 
 export const populateTicketMetrics = (
-  result: any[],
+  tickets: any[],
   ticketsGroupedByCategory: any
 ) => {
   return {
-    ...result.reduce(
+    ...tickets.reduce(
       (acc: any, curr: any) => {
         curr["status"] !== "done" ? acc["progress"]++ : acc["completed"]++;
         return acc;
@@ -31,9 +31,7 @@ export const populateTicketMetrics = (
         completed: 0,
       }
     ),
-    numberOfTickets: result.length,
-    categories: Object.keys(ticketsGroupedByCategory).sort(
-      (a: string, b: string) => a.localeCompare(b)
-    ),
+    numberOfTickets: tickets.length,
+    categories: Object.keys(ticketsGroupedByCategory).sort(),
   };
 };
