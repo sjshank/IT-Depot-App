@@ -9,17 +9,24 @@ type AppPropsWithLayout = AppProps & {
 };
 
 export default function MyApp(props: AppPropsWithLayout) {
-  const { Component, pageProps } = props;
+  const {
+    Component,
+    pageProps: { session, ...pageProps },
+  } = props;
   //Core web-vitals metrics report
   useReportWebVitals((metric) => {
     // console.info(metric);
   });
   // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const getLayout =
+    Component.getLayout ??
+    ((page) => {
+      return page;
+    });
 
   return getLayout(
     <AppCacheProvider {...props}>
-      <Component {...pageProps} />
+      <Component {...pageProps} {...session} />
     </AppCacheProvider>
   );
 }

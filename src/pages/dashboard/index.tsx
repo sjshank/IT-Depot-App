@@ -8,15 +8,24 @@ import { retrieveDashboardDataForUser } from "@/services/dashboard-api";
 import TicketGrid from "@/components/tickets/ticket-grid";
 import ViewTicketContainer from "@/components/view-ticket";
 import TicketContextProvider from "@/context/ticket-context";
+import Head from "next/head";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]";
+import NotFoundAlert from "@/components/tickets/not-found-alert";
 
 const Overview: NextPageWithLayout = (props) => {
   const { ticketsGroupedByCategory, metrics } = props as any;
+
   return (
     <TicketContextProvider>
       <>
+        <Head>
+          <title>IT Garage : Dashboard</title>
+          <meta name="description" content="User specific ticket dashboard" />
+        </Head>
         <TicketMetrics {...metrics} categories={metrics.categories.length} />
         <Grid container direction="column" rowSpacing={4} columnSpacing={4}>
-          {metrics &&
+          {metrics?.categories.length > 0 &&
             metrics.categories.map((category: string, index: number) => {
               return (
                 <TicketGrid
@@ -26,6 +35,7 @@ const Overview: NextPageWithLayout = (props) => {
                 />
               );
             })}
+          {metrics.categories.length < 1 && <NotFoundAlert />}
         </Grid>
         <ViewTicketContainer />
       </>
@@ -34,12 +44,23 @@ const Overview: NextPageWithLayout = (props) => {
 };
 
 export const getServerSideProps: GetServerSideProps<any> = async (context) => {
-  const { res } = context;
+  const { res, req } = context;
   res.setHeader(
     "Cache-Control",
     "public, s-maxage=10, stale-while-revalidate=30"
   );
-  const result = await retrieveDashboardDataForUser();
+
+  const session = await getServerSession(req, res, authOptions as any);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  const { user } = session as any;
+  const result = await retrieveDashboardDataForUser(user);
 
   return {
     props: {
@@ -49,7 +70,9 @@ export const getServerSideProps: GetServerSideProps<any> = async (context) => {
 };
 
 const Dashboard = WithFormLayout(Overview, {
-  header: "Ticket Dashboard",
+  header: "Incident Dashboard",
+  subHeader:
+    "A visual representations of real-time incident data that help users to monitor progress, and make smarter, data-driven decisions",
 });
 
 export default WithPageLayout(Dashboard);

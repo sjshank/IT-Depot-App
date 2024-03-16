@@ -22,6 +22,7 @@ export type TTicket = {
   progress: string;
   createdBy: string;
   assignedTo: string;
+  createdOn: string;
 };
 
 export interface ICreateTicketFormFields {

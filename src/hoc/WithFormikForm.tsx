@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import { Box, CircularProgress } from "@mui/material";
 import React from "react";
 import dynamic from "next/dynamic";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
 
 type TFormikConfigProps = {
   WrapperComponent: React.ElementType;
@@ -17,13 +19,13 @@ const WithFormikForm = ({
   buttonLabel = "Proceed",
 }: TFormikConfigProps): React.ElementType => {
   const FormWithFormikComponent = (props: any) => {
+    const router = useRouter();
     const { onSubmitAction, ticket, notification } = props;
     const formik = useFormik({
       ...formikOptions,
       initialValues: ticket ? ticket : formikOptions.initialValues, //check added for create/updare ticket form
       enableReinitialize: true,
       onSubmit: (values: any, { setSubmitting }: FormikHelpers<any>) => {
-        console.log("onsubmit");
         setTimeout(() => {
           setSubmitting(false);
           onSubmitAction(values);
@@ -52,10 +54,24 @@ const WithFormikForm = ({
             component="div"
             sx={{ m: 1, position: "relative", alignSelf: "center" }}
           >
+            {router.pathname !== "/" && (
+              <NextLink href={`/dashboard`} role="link">
+                <Button
+                  variant="outlined"
+                  disabled={formik.isSubmitting}
+                  color="secondary"
+                  tabIndex={2}
+                  sx={{ mx: 3 }}
+                >
+                  Cancel
+                </Button>
+              </NextLink>
+            )}
             <Button
               variant="contained"
               disabled={formik.isSubmitting}
               type="submit"
+              tabIndex={1}
             >
               {buttonLabel}
             </Button>

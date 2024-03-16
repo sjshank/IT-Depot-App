@@ -4,10 +4,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Button from "@mui/material/Button";
 import React from "react";
 import { Slide } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
+import { unEscapeCharEntities } from "@/utils/helper";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -24,11 +24,11 @@ type TModalProps = {
   modalId: string;
   modalTitle: string | undefined;
   modalContent: JSX.Element;
-  buttonLbl?: string;
+  footer?: JSX.Element;
 };
 
 const MuiDialog = ({
-  buttonLbl = "Close",
+  footer,
   handleClose,
   modalContent = <></>,
   modalId,
@@ -49,7 +49,7 @@ const MuiDialog = ({
         textAlign="center"
         color="primary"
       >
-        {modalTitle}
+        {unEscapeCharEntities(modalTitle)}
       </DialogTitle>
       <IconButton
         aria-label="close"
@@ -71,11 +71,7 @@ const MuiDialog = ({
       >
         {modalContent}
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} variant="outlined">
-          {buttonLbl}
-        </Button>
-      </DialogActions>
+      <DialogActions>{footer}</DialogActions>
     </Dialog>
   );
 };

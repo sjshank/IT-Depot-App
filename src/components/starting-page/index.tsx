@@ -3,6 +3,7 @@ import { NextRouter, useRouter } from "next/router";
 import WithFormLayout from "@/hoc/withFormLayout";
 import Login from "./login";
 import useNotification from "@/hooks/useNotification";
+import { signIn } from "next-auth/react";
 
 const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
   const [notification, setNotification] = useNotification();
@@ -10,19 +11,15 @@ const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
 
   const handleLogIn = useCallback(async (email: string | undefined) => {
     try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        body: JSON.stringify(email),
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: JSON.stringify(email),
       });
-      const data = await res.json();
-      if (data.status !== "Success") {
+      if (!result?.ok && result?.status === 401) {
         setNotification((notification) => ({
           ...notification,
           type: "error",
-          messages: data.errors,
+          messages: ["Login failed. Incorrect e-mail address."],
         }));
         return;
       }
@@ -36,6 +33,8 @@ const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
 
 const StartingPage = WithFormLayout(LandingPage, {
   header: "Welcome to Next IT Garage !",
+  subHeader:
+    "IT Garage platform as software offers workflow management that enables organizations to manage incident problems related with access control, hardware, project & software.",
 });
 
 export default StartingPage;

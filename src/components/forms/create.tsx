@@ -16,9 +16,10 @@ const formikOptions: Omit<FormikConfig<any>, "onSubmit"> = {
     title: "",
     priority: 1,
     description: "",
-    category: "hardware",
+    category: "access control",
     status: "not started",
     progress: 0,
+    assignedTo: "djsaurabh8@gmail.com",
   },
 
   validationSchema: CreateTicketSchema,
@@ -27,7 +28,7 @@ const formikOptions: Omit<FormikConfig<any>, "onSubmit"> = {
 const CreateTicketFormik: React.FunctionComponent<TCreateTicketProps> = ({
   formik,
 }: TCreateTicketProps) => {
-  return <ConnectedForm formik={formik} />;
+  return <ConnectedForm formik={formik} createMode={true} />;
 };
 
 const CreateForm = WithFormikForm({

@@ -1,12 +1,12 @@
 import { groupBy, populateTicketMetrics } from "@/utils/helper";
 import { connectDbCollection } from "./connect-db";
 
-export const retrieveDashboardDataForUser = async () => {
+export const retrieveDashboardDataForUser = async (user: any) => {
   const ticketCollection = await connectDbCollection("tickets");
   const result = await ticketCollection
     .find(
       {
-        createdBy: "sshankariya@gmail.com",
+        createdBy: user?.email,
       },
       { projection: { _id: 0 } }
     )

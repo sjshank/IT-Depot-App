@@ -14,6 +14,7 @@ import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import MuiSlider from "@/ui/MuiSlider";
 import TicketCardActions from "./ticket-card-actions";
 import { TicketContext } from "@/context/ticket-context";
+import { unEscapeCharEntities } from "@/utils/helper";
 
 const TicketGridItem = (ticket: TTicket) => {
   const {
@@ -37,9 +38,9 @@ const TicketGridItem = (ticket: TTicket) => {
             gutterBottom
             variant="h6"
             component="h3"
-            sx={{ textTransform: "capitalize" }}
+            sx={{ textTransform: { firstLetter: "capitalize" } }}
           >
-            {title}
+            {unEscapeCharEntities(title)}
           </Typography>
           <Rating
             name="priority"
@@ -60,7 +61,7 @@ const TicketGridItem = (ticket: TTicket) => {
             component="p"
             className="char-truncate"
           >
-            {description}
+            {unEscapeCharEntities(description)}
           </Typography>
           <MuiSlider
             defaultValue={Number(progress)}
@@ -84,7 +85,7 @@ const TicketGridItem = (ticket: TTicket) => {
             <Chip
               color={`${status === "done" ? "success" : "primary"}`}
               sx={{
-                textTransform: "capitalize",
+                textTransform: { firstLetter: "capitalize" },
               }}
               label={status}
             />

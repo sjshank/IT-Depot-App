@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs/promises";
 import { globby } from "globby";
 
 function addPage(page) {
@@ -10,7 +10,7 @@ function addPage(page) {
   const route = path === "/index" ? "" : path;
 
   return `  <url>
-    <loc>${`${process.env.WEBSITE_URL}${route}`}</loc>
+    <loc>${`${process.env.NEXT_PUBLIC_WEBSITE_URL}${route}`}</loc>
     <changefreq>hourly</changefreq>
   </url>`;
 }

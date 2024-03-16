@@ -35,3 +35,12 @@ export const populateTicketMetrics = (
     categories: Object.keys(ticketsGroupedByCategory).sort(),
   };
 };
+
+export const unEscapeCharEntities = (str: string) => {
+  return str
+    .replaceAll("&amp;", "&")
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&apos;", "'");
+};

@@ -10,12 +10,16 @@ import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import LocalFireDepartmentOutlinedIcon from "@mui/icons-material/LocalFireDepartmentOutlined";
 import MuiSlider from "@/ui/MuiSlider";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import { unEscapeCharEntities } from "@/utils/helper";
 
 const CustomizedTypograpghy = styled(Typography)<TypographyProps>(
   ({ theme }) => ({
     "&.MuiTypography-root": {
       color: theme.palette.text.secondary,
-      textTransform: "capitalize",
+      "&::first-letter": {
+        textTransform: "capitalize",
+      },
       paddingLeft: theme.spacing(1),
     },
   })
@@ -33,7 +37,7 @@ const TicketContent: React.FunctionComponent<{ ticket: TTicket }> = ({
           Description
         </Typography>
         <CustomizedTypograpghy variant="body2">
-          {ticket.description}
+          {unEscapeCharEntities(ticket.description)}
         </CustomizedTypograpghy>
       </Box>
       <Box>
@@ -78,7 +82,6 @@ const TicketContent: React.FunctionComponent<{ ticket: TTicket }> = ({
             </Typography>
             <CustomizedTypograpghy
               variant="body2"
-              display="inline-flex"
               color={`${ticket.status === "done" ? "#2e7d32 !important" : ""}`}
             >
               {ticket.status}
@@ -116,7 +119,11 @@ const TicketContent: React.FunctionComponent<{ ticket: TTicket }> = ({
             <Typography component="h6" variant="subtitle1">
               Assigned To
             </Typography>
-            <CustomizedTypograpghy variant="body2" display="inline-flex">
+            <CustomizedTypograpghy
+              variant="body2"
+              display="inline-flex"
+              gap={0.5}
+            >
               <AssignmentIndIcon fontSize="small" color="secondary" />
               {ticket.assignedTo}
             </CustomizedTypograpghy>
@@ -125,9 +132,35 @@ const TicketContent: React.FunctionComponent<{ ticket: TTicket }> = ({
             <Typography component="h6" variant="subtitle1">
               Submitted By
             </Typography>
-            <CustomizedTypograpghy variant="body2" display="inline-flex">
+            <CustomizedTypograpghy
+              variant="body2"
+              display="inline-flex"
+              gap={0.5}
+            >
               <AssignmentIndIcon fontSize="small" color="secondary" />
               {ticket.createdBy}
+            </CustomizedTypograpghy>
+          </Box>
+        </Stack>
+      </Box>
+      <Box>
+        <Stack
+          direction={{ sm: "row" }}
+          gap={2}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box sx={{ width: "100%" }}>
+            <Typography component="h6" variant="subtitle1">
+              Created On
+            </Typography>
+            <CustomizedTypograpghy
+              variant="body2"
+              display="inline-flex"
+              gap={0.5}
+            >
+              <DateRangeIcon fontSize="small" color="secondary" />
+              {ticket.createdOn}
             </CustomizedTypograpghy>
           </Box>
         </Stack>

@@ -12,7 +12,7 @@ import { CATEGORIES, PRIORITIES, STATUS } from "@/utils/constants";
 import MuiInputLabel from "@/ui/MuiInputLabel";
 
 const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
-  const { formik } = props;
+  const { formik, createMode } = props;
   const categoryOptions = useCallback(
     () =>
       CATEGORIES.map((category, index) => (
@@ -64,6 +64,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
         size="medium"
         label="Title"
         required
+        tabIndex={1}
         color="primary"
         placeholder="Enter ticket title"
         value={formik.values.title}
@@ -80,6 +81,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
         name="description"
         size="medium"
         required
+        tabIndex={1}
         color="primary"
         placeholder="Enter ticket description"
         value={formik.values.description}
@@ -100,6 +102,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
           name="category"
           size="medium"
           required
+          tabIndex={1}
           color="primary"
           value={formik.values.category}
           onChange={formik.handleChange}
@@ -120,6 +123,8 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
           color="primary"
           aria-labelledby="status"
           required
+          tabIndex={1}
+          disabled={createMode}
           value={formik.values.status}
           onChange={formik.handleChange}
         >
@@ -135,6 +140,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
           id="priority"
           aria-labelledby="priority"
           name="priority"
+          tabIndex={1}
           value={formik.values.priority}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             formik?.setFieldValue("priority", e?.currentTarget.value)
@@ -154,6 +160,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
           onChange={formik.handleChange}
           aria-labelledby="progress"
           valueLabelDisplay="auto"
+          tabIndex={1}
           shiftStep={30}
           step={10}
           marks
@@ -162,6 +169,24 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
           disabled={formik.values.status === "not started"}
         />
       </FormControl>
+      <TextField
+        id="assignedTo"
+        name="assignedTo"
+        size="medium"
+        label="Assigned To"
+        required
+        tabIndex={1}
+        color="primary"
+        disabled={true}
+        placeholder="Enter email address"
+        value={formik.values.assignedTo}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.assignedTo && Boolean(formik.errors.assignedTo)}
+        helperText={formik.touched.assignedTo && formik.errors.assignedTo}
+        variant="standard"
+        sx={{ marginBottom: 3, minHeight: "80px" }}
+      />
     </>
   );
 };

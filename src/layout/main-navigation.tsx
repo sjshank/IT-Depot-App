@@ -1,37 +1,76 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Avatar from "@mui/material/Avatar";
 import React from "react";
 import NextLink from "next/link";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 import AppLogo from "./app-logo";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
+import { Typography } from "@mui/material";
 
 const MainNavigation: React.FunctionComponent<{}> = (): JSX.Element => {
+  const { data: session } = useSession();
+  const router = useRouter();
+
   const handleCloseNavMenu = () => {};
   return (
     <AppBar position="static" sx={{ padding: 0.5 }}>
       <Toolbar>
         <AppLogo />
-        <Box
-          sx={{
-            flexGrow: 1,
-            display: { xs: "none", md: "flex" },
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-            gap: 1,
-          }}
-        >
-          <Link
-            href="/ticket/create"
-            component={NextLink}
-            onClick={handleCloseNavMenu}
-            role="link"
-            sx={{ my: 2, color: "#ffffff", display: "block" }}
+        {router.pathname !== "/" && session && (
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
+              gap: { xs: 1, md: 2 },
+            }}
           >
-            Submit Ticket
-          </Link>
-          <Avatar
+            <Link
+              href="/dashboard"
+              component={NextLink}
+              role="link"
+              tabIndex={1}
+              title="Dashboard"
+              sx={{ marginTop: 1, color: "#ffffff" }}
+            >
+              <DashboardIcon fontSize="large" />
+            </Link>
+            <Link
+              href="/ticket/create"
+              component={NextLink}
+              role="link"
+              tabIndex={1}
+              title="Report Incident"
+              sx={{ marginTop: 1, color: "#ffffff" }}
+            >
+              <AddBoxIcon fontSize="large" />
+            </Link>
+            {session && (
+              <Typography
+                onClick={() =>
+                  signOut({ callbackUrl: process.env.NEXTAUTH_URL })
+                }
+                variant="subtitle2"
+                role="button"
+                tabIndex={1}
+                title="Logout"
+                sx={{
+                  marginBottom: 1,
+                  color: "#ffffff",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
+                Logout
+              </Typography>
+            )}
+            {/* <Avatar
             variant="circular"
             sx={{
               my: 1.4,
@@ -39,8 +78,9 @@ const MainNavigation: React.FunctionComponent<{}> = (): JSX.Element => {
             }}
           >
             SS
-          </Avatar>
-        </Box>
+          </Avatar> */}
+          </Box>
+        )}
 
         {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton

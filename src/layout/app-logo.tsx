@@ -9,6 +9,8 @@ const AppLogo: React.FunctionComponent<{}> = (): JSX.Element => {
     <Link
       href="/"
       component={NextLink}
+      role="link"
+      tabIndex={1}
       sx={{
         color: "#ffffff",
         display: "inline-flex",

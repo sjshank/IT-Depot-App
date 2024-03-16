@@ -50,6 +50,7 @@ const ModifyTicketDetails: React.FunctionComponent<any> = (
 
 const UpdateTicketContainer = WithFormLayout(ModifyTicketDetails, {
   header: "Update Incident Details",
+  subHeader: "Update your incident with additional details",
 });
 
 export default UpdateTicketContainer;

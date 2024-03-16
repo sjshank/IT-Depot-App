@@ -21,8 +21,16 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     await executeCreateTcktInputValidation(req, res);
-    const { title, description, category, status, priority, progress } =
-      req.body;
+    const {
+      title,
+      description,
+      category,
+      status,
+      priority,
+      progress,
+      assignedTo,
+      createdBy,
+    } = req.body;
     const ticketCollection = await connectDbCollection("tickets");
     const result = await ticketCollection.insertOne({
       title,
@@ -32,8 +40,9 @@ export default async function handler(
       priority,
       progress,
       ticketId: customAlphabet(`1234567890`, 10)(6),
-      createdBy: "sshankariya@gmail.com",
-      assignedTo: "djsaurabh8@gmail.com",
+      createdBy: createdBy,
+      assignedTo: assignedTo,
+      createdOn: `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`,
     });
     if (!result) {
       res.status(500).json({

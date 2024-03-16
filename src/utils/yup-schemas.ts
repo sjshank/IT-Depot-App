@@ -16,4 +16,7 @@ export const CreateTicketSchema = object({
   createdOn: string()
     .optional()
     .default(() => new Date().toLocaleString()),
+  assignedTo: string()
+    .email("Enter a valid e-mail address")
+    .required("Email is required"),
 });

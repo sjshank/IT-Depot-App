@@ -8,10 +8,6 @@
     <changefreq>hourly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/ticket/[ticketId]</loc>
-    <changefreq>hourly</changefreq>
-  </url>
-  <url>
     <loc>http://localhost:3000/ticket/create/index</loc>
     <changefreq>hourly</changefreq>
   </url>

@@ -31,3 +31,4 @@ IT incident application to trace all the incidents reported by employees.
     - MongoDB : [6.4](https://www.mongodb.com/)
     - Formik : [2.4](https://formik.org/)
     - Snyk : [1.12](https://snyk.io/)
+    - NextAuth : [4.2](https://next-auth.js.org/)

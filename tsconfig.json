@@ -21,7 +21,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/utils/generate-sitemap.js",
-    "next.config.js"
+    "next.config.mjs",
+    "src/pages/api/auth/[...nextauth]/index.js"
   ],
   "exclude": ["node_modules"]
 }

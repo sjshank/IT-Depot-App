@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-import withBundleAnalyzer from "@next/bundle-analyzer";
+// import withBundleAnalyzer from "@next/bundle-analyzer";
 
-const bundleAnalyzer = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-});
+// const bundleAnalyzer = withBundleAnalyzer({
+//   enabled: process.env.ANALYZE === "true",
+// });
 
 //CSP header configuration
 const cspHeader = `
@@ -102,4 +102,5 @@ const nextConfig = {
   },
 };
 
-export default bundleAnalyzer(nextConfig);
+// export default bundleAnalyzer(nextConfig);
+export default nextConfig;
