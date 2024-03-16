@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-// import withBundleAnalyzer from "@next/bundle-analyzer";
+import bundleAnalyzer from "@next/bundle-analyzer";
 
-// const bundleAnalyzer = withBundleAnalyzer({
-//   enabled: process.env.ANALYZE === "true",
-// });
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 //CSP header configuration
 const cspHeader = `
@@ -92,15 +92,6 @@ const nextConfig = {
   poweredByHeader: false,
   // replacing Terser with SWC for minifying JavaScript
   swcMinify: true,
-  //extend the usage of webpack
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      //generating sitemap.xml
-      import("./src/utils/generate-sitemap.js");
-    }
-    return config;
-  },
 };
 
-// export default bundleAnalyzer(nextConfig);
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

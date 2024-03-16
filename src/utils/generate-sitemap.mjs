@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+import fs from "fs";
 import { globby } from "globby";
 
 function addPage(page) {
@@ -10,8 +10,9 @@ function addPage(page) {
   const route = path === "/index" ? "" : path;
 
   return `  <url>
-    <loc>${`${process.env.NEXT_PUBLIC_WEBSITE_URL}${route}`}</loc>
-    <changefreq>hourly</changefreq>
+    <loc>${`http://localhost:3000${route}`}</loc>
+    <lastmod>${`${new Date()}`}</lastmod>
+    <changefreq>weekly</changefreq>
   </url>`;
 }
 
@@ -26,7 +27,8 @@ async function generateSitemap() {
     "!src/pages/404.tsx",
     "!src/pages/500.tsx",
   ]);
-  const sitemap = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(addPage).join("\n")}
 </urlset>`;
 

@@ -1,6 +1,18 @@
-# IT-Garage
+# IT Garage
 
-IT incident application to trace all the incidents reported by employees.
+    *IT Garage platform as software offers workflow management that enables organizations to manage incident problems related with access control, hardware, project & software.*
+
+## Functional Features
+
+    - User should able to login into system using email : "johndoe@example.com"
+    - Authorized users should have provision to navigate pages such as Dashboard, Report & Update Incident
+    - Each page must have header & subheader
+    - Dashboard screen should highlight overall incident metrics along with incident grid view grouped by category
+    - User should have provision to submit or update incident details in different categories
+    - User should have provision to View or Delete incident
+    - Form should ask incident details such as title, description, category, priority & assignee
+    - Basic validation should be implemented at client side
+    - Only authenticate users navigate to different pages from main navigation menu
 
 ## Non-Functional Features
 

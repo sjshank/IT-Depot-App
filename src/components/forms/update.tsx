@@ -24,7 +24,7 @@ const formikOptions: Omit<FormikConfig<any>, "onSubmit"> = {
     category: "access control",
     status: "not started",
     progress: 0,
-    assignedTo: "djsaurabh8@gmail.com",
+    assignedTo: "sshankariya@gmail.com",
   },
   enableReinitialize: true,
   validationSchema: CreateTicketSchema,
