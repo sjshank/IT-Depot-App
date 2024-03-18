@@ -7,6 +7,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
 import MainNavigation from "./main-navigation";
 import { SessionProvider } from "next-auth/react";
+import Footer from "./footer";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -27,9 +28,10 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <MainNavigation />
-          <main style={{ marginTop: "40px" }}>
+          <main style={{ marginTop: "40px", minHeight: "36vw" }}>
             <>{children}</>
           </main>
+          <Footer />
         </ThemeProvider>
       </SessionProvider>
     </>
