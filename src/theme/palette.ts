@@ -1,5 +1,4 @@
 import { PaletteOptions } from "@mui/material";
-import { red } from "@mui/material/colors";
 
 declare module "@mui/material/styles" {
   interface Palette {
@@ -42,4 +41,8 @@ const CustomPaletteOptions: Partial<PaletteOptions> = {
   },
 };
 
-export default { palette: CustomPaletteOptions as Partial<PaletteOptions> };
+const CustomPalette = {
+  palette: CustomPaletteOptions as Partial<PaletteOptions>,
+};
+
+export default CustomPalette;

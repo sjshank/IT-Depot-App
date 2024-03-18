@@ -10,7 +10,7 @@ function addPage(page) {
   const route = path === "/index" ? "" : path;
 
   return `  <url>
-    <loc>${`http://localhost:3000${route}`}</loc>
+    <loc>${`https://next-it-garage.vercel.app${route}`}</loc>
     <lastmod>${`${new Date()}`}</lastmod>
     <changefreq>weekly</changefreq>
   </url>`;

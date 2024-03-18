@@ -21,6 +21,8 @@ const CustomTypographyOptions: Partial<TypographyVariantsOptions> = {
   },
 };
 
-export default {
+const CustomTypography = {
   typography: CustomTypographyOptions as Partial<TypographyVariantsOptions>,
 };
+
+export default CustomTypography;

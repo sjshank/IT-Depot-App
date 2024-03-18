@@ -37,7 +37,7 @@ const ModifyTicketDetails: React.FunctionComponent<any> = (
         console.error(err);
       }
     },
-    []
+    [ticket.ticketId]
   );
   return (
     <UpdateForm

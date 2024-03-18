@@ -20,7 +20,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
           {category}
         </MenuItem>
       )),
-    [CATEGORIES]
+    []
   );
 
   const statusOptions = useCallback(
@@ -30,7 +30,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
           {status}
         </MenuItem>
       )),
-    [STATUS]
+    []
   );
 
   const prioritiesOptions = useCallback(
@@ -43,7 +43,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
           label={priority}
         />
       )),
-    [STATUS]
+    []
   );
 
   const toggleProgress = useMemo((): number => {

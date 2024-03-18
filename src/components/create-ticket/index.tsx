@@ -4,13 +4,11 @@ import WithFormLayout from "@/hoc/withFormLayout";
 import { ICreateTicketFormFields } from "@/types/ticket";
 import { NextRouter, useRouter } from "next/router";
 import useNotification from "@/hooks/useNotification";
-import { useSession, getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 const SubmitNewTicket = () => {
   const [notification, setNotification] = useNotification();
   const router: NextRouter = useRouter();
-  // const { data: session } = useSession();
-  // const user = session.user as any;
   const handleSubmitTicket = useCallback(
     async (formFields: ICreateTicketFormFields) => {
       try {
@@ -40,7 +38,7 @@ const SubmitNewTicket = () => {
         console.error(err);
       }
     },
-    []
+    [router]
   );
   return (
     <CreateForm

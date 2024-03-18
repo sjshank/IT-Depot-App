@@ -1,6 +1,6 @@
 import { Components } from "@mui/material";
 
-const CustomMuiComponents: Components = {
+const CustomMuiComponentOptions: Components = {
   // Name of the component
   MuiButton: {
     styleOverrides: {
@@ -31,4 +31,8 @@ const CustomMuiComponents: Components = {
   },
 };
 
-export default { components: CustomMuiComponents as Components };
+const CustomMuiComponents = {
+  components: CustomMuiComponentOptions as Components,
+};
+
+export default CustomMuiComponents;

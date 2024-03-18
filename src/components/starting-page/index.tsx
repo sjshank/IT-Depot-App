@@ -9,25 +9,28 @@ const LandingPage: React.FunctionComponent<{}> = (): JSX.Element => {
   const [notification, setNotification] = useNotification();
   const router: NextRouter = useRouter();
 
-  const handleLogIn = useCallback(async (email: string | undefined) => {
-    try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email: JSON.stringify(email),
-      });
-      if (!result?.ok && result?.status === 401) {
-        setNotification((notification) => ({
-          ...notification,
-          type: "error",
-          messages: ["Login failed. Incorrect e-mail address."],
-        }));
-        return;
+  const handleLogIn = useCallback(
+    async (email: string | undefined) => {
+      try {
+        const result = await signIn("credentials", {
+          redirect: false,
+          email: JSON.stringify(email),
+        });
+        if (!result?.ok && result?.status === 401) {
+          setNotification((notification) => ({
+            ...notification,
+            type: "error",
+            messages: ["Login failed. Incorrect e-mail address."],
+          }));
+          return;
+        }
+        router.push("/dashboard");
+      } catch (err: any) {
+        console.log("----", err.message);
       }
-      router.push("/dashboard");
-    } catch (err: any) {
-      console.log("----", err.message);
-    }
-  }, []);
+    },
+    [router]
+  );
   return <Login onSubmitAction={handleLogIn} notification={notification} />;
 };
 

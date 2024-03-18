@@ -15,7 +15,7 @@ const WithPageLayout = (
       if (status == "unauthenticated" && !session && router.pathname !== "/") {
         router.replace("/");
       }
-    }, [status]);
+    }, [status, session, router]);
     return <WrapperComponent {...props} />;
   };
   PageWithRootLayout.getLayout = function (page: ReactElement) {
