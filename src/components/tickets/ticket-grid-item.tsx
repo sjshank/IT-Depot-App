@@ -56,7 +56,7 @@ const TicketGridItem = (ticket: TTicket) => {
             emptyIcon={<LocalFireDepartmentOutlinedIcon fontSize="small" />}
           />
           <Typography
-            variant="subtitle2"
+            variant="caption"
             color="text.secondary"
             component="p"
             className="char-truncate"
@@ -85,7 +85,7 @@ const TicketGridItem = (ticket: TTicket) => {
             <Chip
               color={`${status === "done" ? "success" : "primary"}`}
               sx={{
-                textTransform: { firstLetter: "capitalize" },
+                textTransform: "capitalize",
               }}
               label={status}
             />

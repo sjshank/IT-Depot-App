@@ -17,9 +17,9 @@ const CustomizedTypograpghy = styled(Typography)<TypographyProps>(
   ({ theme }) => ({
     "&.MuiTypography-root": {
       color: theme.palette.text.secondary,
-      "&::first-letter": {
-        textTransform: "capitalize",
-      },
+      // "&::first-letter": {
+      //   textTransform: "capitalize",
+      // },
       paddingLeft: theme.spacing(1),
     },
   })

@@ -24,8 +24,17 @@ const CustomMuiComponentOptions: Components = {
   MuiCard: {
     styleOverrides: {
       root: {
-        minWidth: 300,
+        minHeight: 250,
         maxWidth: 400,
+      },
+    },
+  },
+  MuiTypography: {
+    styleOverrides: {
+      root: {
+        "&::first-letter": {
+          textTransform: "capitalize",
+        },
       },
     },
   },
