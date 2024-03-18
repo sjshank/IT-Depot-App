@@ -16,6 +16,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/utils/generate-sitemap.mjs",
+    "next.config.mjs",
+    "src/pages/api/auth/[...nextauth]/index.js"
+  ],
   "exclude": ["node_modules"]
 }

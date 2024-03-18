@@ -2,23 +2,46 @@
   "name": "it_depot_app",
   "version": "0.1.0",
   "private": true,
+  "description": "IT Garage platform as software offers workflow management that enables organizations to manage incident problems related with access control, hardware, project & software.",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "snyk test sitemap next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build",
+    "snyk-test": "snyk test",
+    "snyk-monitor": "snyk monitor",
+    "sitemap": "cross-env NODE_OPTIONS='--experimental-json-modules' node ./src/utils/generate-sitemap.mjs"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.12",
+    "@mui/material": "^5.15.12",
+    "@mui/material-nextjs": "^5.15.11",
+    "express-validator": "^7.0.1",
+    "formik": "^2.4.5",
+    "mongodb": "^6.4.0",
+    "nanoid": "^5.0.6",
+    "next": "14.1.3",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.3"
+    "sharp": "^0.33.2",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@next/bundle-analyzer": "^14.1.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cross-env": "^7.0.3",
     "eslint": "^8",
-    "eslint-config-next": "14.1.3"
+    "eslint-config-next": "14.1.3",
+    "globby": "^14.0.1",
+    "snyk": "^1.1283.0",
+    "typescript": "^5"
   }
 }

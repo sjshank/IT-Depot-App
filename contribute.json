@@ -1,0 +1,13 @@
+{
+  "name": "It Garage",
+  "description": "IT Garage platform as software offers workflow management that enables organizations to manage incident problems related with access control, hardware, project & software.",
+  "repository": {
+    "url": "https://github.com/sjshank/IT-Depot-App",
+    "license": "MIT"
+  },
+  "urls": {
+    "dev": "http://localhost:3000/",
+    "prop": "https://next-it-garage.vercel.app/"
+  },
+  "keywords": ["nextjs", "reactjs", "css", "html5", "javascript"]
+}
