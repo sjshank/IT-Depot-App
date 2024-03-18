@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:3000</loc>
-    <lastmod>Sun Mar 17 2024 02:01:25 GMT+0530 (India Standard Time)</lastmod>
+    <loc>https://next-it-garage.vercel.app</loc>
+    <lastmod>Mon Mar 18 2024 15:15:09 GMT+0530 (India Standard Time)</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/dashboard/index</loc>
-    <lastmod>Sun Mar 17 2024 02:01:25 GMT+0530 (India Standard Time)</lastmod>
+    <loc>https://next-it-garage.vercel.app/dashboard/index</loc>
+    <lastmod>Mon Mar 18 2024 15:15:09 GMT+0530 (India Standard Time)</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/ticket/create/index</loc>
-    <lastmod>Sun Mar 17 2024 02:01:25 GMT+0530 (India Standard Time)</lastmod>
+    <loc>https://next-it-garage.vercel.app/ticket/create/index</loc>
+    <lastmod>Mon Mar 18 2024 15:15:09 GMT+0530 (India Standard Time)</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://localhost:3000/ticket/update/[ticketId]</loc>
-    <lastmod>Sun Mar 17 2024 02:01:25 GMT+0530 (India Standard Time)</lastmod>
+    <loc>https://next-it-garage.vercel.app/ticket/update/[ticketId]</loc>
+    <lastmod>Mon Mar 18 2024 15:15:09 GMT+0530 (India Standard Time)</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
