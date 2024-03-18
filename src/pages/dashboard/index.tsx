@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { NextPageWithLayout } from "@/layout";
 import WithPageLayout from "@/hoc/withPageLayout";
 import Grid from "@mui/material/Grid";
@@ -44,7 +45,9 @@ const Overview: NextPageWithLayout = (props) => {
                 />
               );
             })}
-          {NotFoundLazyComponent && <NotFoundLazyComponent />}
+          <Suspense fallback={<p>Loading data...</p>}>
+            {NotFoundLazyComponent && <NotFoundLazyComponent />}
+          </Suspense>
         </Grid>
         <ViewTicketContainer />
       </>
