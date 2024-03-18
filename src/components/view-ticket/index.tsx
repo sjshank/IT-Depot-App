@@ -1,5 +1,5 @@
 import { TicketContext } from "@/context/ticket-context";
-import React, { useContext } from "react";
+import React, { Suspense, useContext } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import useNotification from "@/hooks/useNotification";
@@ -55,31 +55,33 @@ const ViewTicketContainer = () => {
 
   return (
     <>
-      {TicketModalComponent && (
-        <TicketModalComponent
-          footer={
-            <>
-              {TicketModalFooterComponent && (
-                <TicketModalFooterComponent
-                  onClose={hideTicketViewModal}
-                  onDelete={handleDeleteAction}
-                />
-              )}
-            </>
-          }
-          open={isTicketModalOpened}
-          handleClose={hideTicketViewModal}
-          modalContent={
-            <>
-              {TicketModalContentComponent && (
-                <TicketModalContentComponent ticket={ticket} />
-              )}
-            </>
-          }
-          modalId="ticket-detials"
-          modalTitle={ticket.title}
-        />
-      )}
+      <Suspense fallback={<p>Loading data...</p>}>
+        {TicketModalComponent && (
+          <TicketModalComponent
+            footer={
+              <>
+                {TicketModalFooterComponent && (
+                  <TicketModalFooterComponent
+                    onClose={hideTicketViewModal}
+                    onDelete={handleDeleteAction}
+                  />
+                )}
+              </>
+            }
+            open={isTicketModalOpened}
+            handleClose={hideTicketViewModal}
+            modalContent={
+              <>
+                {TicketModalContentComponent && (
+                  <TicketModalContentComponent ticket={ticket} />
+                )}
+              </>
+            }
+            modalId="ticket-detials"
+            modalTitle={ticket.title}
+          />
+        )}
+      </Suspense>
       {notification.messages.length > 0 && ToastComponent && (
         <ToastComponent
           messages={notification.messages}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 import {
   Alert,
@@ -34,17 +34,19 @@ const MuiToast = (props: any) => {
 
   return (
     <>
-      {messages.length > 0 && SnackBarComponent && (
-        <SnackBarComponent
-          TransitionComponent={SlideTransition}
-          open={messages.length > 0}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        >
-          <CustomizeAlert severity={type} variant="filled">
-            {messageContent}
-          </CustomizeAlert>
-        </SnackBarComponent>
-      )}
+      <Suspense fallback={<p>Loading data...</p>}>
+        {messages.length > 0 && SnackBarComponent && (
+          <SnackBarComponent
+            TransitionComponent={SlideTransition}
+            open={messages.length > 0}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          >
+            <CustomizeAlert severity={type} variant="filled">
+              {messageContent}
+            </CustomizeAlert>
+          </SnackBarComponent>
+        )}
+      </Suspense>
     </>
   );
 };
