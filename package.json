@@ -5,7 +5,7 @@
   "description": "IT Garage platform as software offers workflow management that enables organizations to manage incident problems related with access control, hardware, project & software.",
   "scripts": {
     "dev": "next dev",
-    "build": "sitemap next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build",
