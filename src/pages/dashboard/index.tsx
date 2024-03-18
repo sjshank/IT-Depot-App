@@ -11,10 +11,19 @@ import TicketContextProvider from "@/context/ticket-context";
 import Head from "next/head";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
-import NotFoundAlert from "@/components/tickets/not-found-alert";
+import dynamic from "next/dynamic";
 
 const Overview: NextPageWithLayout = (props) => {
   const { ticketsGroupedByCategory, metrics } = props as any;
+  let NotFoundLazyComponent = null;
+  if (metrics.categories.length < 1) {
+    NotFoundLazyComponent = dynamic(
+      () => import("@/components/tickets/not-found-alert"),
+      {
+        ssr: false,
+      }
+    );
+  }
 
   return (
     <TicketContextProvider>
@@ -35,7 +44,7 @@ const Overview: NextPageWithLayout = (props) => {
                 />
               );
             })}
-          {metrics.categories.length < 1 && <NotFoundAlert />}
+          {NotFoundLazyComponent && <NotFoundLazyComponent />}
         </Grid>
         <ViewTicketContainer />
       </>

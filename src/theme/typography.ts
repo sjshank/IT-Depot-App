@@ -4,8 +4,8 @@ import { Geologica } from "next/font/google";
 
 export const geologica: NextFont = Geologica({
   weight: "500",
-  subsets: ["cyrillic"],
-  display: "auto",
+  subsets: ["latin"],
+  display: "swap",
   preload: true,
 });
 

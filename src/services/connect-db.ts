@@ -1,11 +1,16 @@
-import mongodbConnection from "@/lib/db";
-import { Collection, Document } from "mongodb";
+import { openDBConnection } from "@/lib/db";
+import { Collection, Document, MongoClient } from "mongodb";
+
+type TConnectDbCollection = {
+  connection: MongoClient;
+  dbCollection: Collection<Document>;
+};
 
 export const connectDbCollection = async (
   collectionName: string
-): Promise<Collection<Document>> => {
-  const connection = await mongodbConnection;
+): Promise<TConnectDbCollection> => {
+  const connection = await openDBConnection();
   const db = await connection.db(process.env.MONGODB_NAME);
   const dbCollection = await db.collection(collectionName);
-  return dbCollection;
+  return { connection, dbCollection };
 };

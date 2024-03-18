@@ -1,16 +1,13 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import NextLink from "next/link";
 import NextImage from "next/image";
-import Link from "@mui/material/Link";
+import { Box } from "@mui/material";
 
 const AppLogo: React.FunctionComponent<{}> = (): JSX.Element => {
   return (
-    <Link
-      href="/"
-      component={NextLink}
-      role="link"
-      tabIndex={1}
+    <Box
+      component="div"
+      tabIndex={0}
       sx={{
         color: "#ffffff",
         display: "inline-flex",
@@ -22,11 +19,12 @@ const AppLogo: React.FunctionComponent<{}> = (): JSX.Element => {
         src="/images/app_logo.png"
         width={40}
         height={40}
+        priority
       />
       <Typography variant="h5" padding={0.5} noWrap>
         IT Garage
       </Typography>
-    </Link>
+    </Box>
   );
 };
 

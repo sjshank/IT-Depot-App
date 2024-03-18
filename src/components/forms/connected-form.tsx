@@ -64,7 +64,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
         size="medium"
         label="Title"
         required
-        tabIndex={1}
+        tabIndex={0}
         color="primary"
         placeholder="Enter ticket title"
         value={formik.values.title}
@@ -81,7 +81,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
         name="description"
         size="medium"
         required
-        tabIndex={1}
+        tabIndex={0}
         color="primary"
         placeholder="Enter ticket description"
         value={formik.values.description}
@@ -93,16 +93,17 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
         sx={{ marginBottom: 3, minHeight: "80px" }}
       />
       <FormControl sx={{ marginBottom: 5 }}>
-        <MuiInputLabel>
+        <MuiInputLabel id="ticket-category">
           Category <sup>*</sup>
         </MuiInputLabel>
         <Select
           id="category"
+          labelId="ticket-category"
           label="Category"
           name="category"
           size="medium"
           required
-          tabIndex={1}
+          tabIndex={0}
           color="primary"
           value={formik.values.category}
           onChange={formik.handleChange}
@@ -112,18 +113,19 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
       </FormControl>
 
       <FormControl sx={{ marginBottom: 5 }}>
-        <MuiInputLabel>
+        <MuiInputLabel id="ticket-status">
           Status <sup>*</sup>
         </MuiInputLabel>
         <Select
           id="status"
           label="Status"
+          labelId="ticket-status"
           name="status"
           size="medium"
           color="primary"
           aria-labelledby="status"
           required
-          tabIndex={1}
+          tabIndex={0}
           disabled={createMode}
           value={formik.values.status}
           onChange={formik.handleChange}
@@ -132,15 +134,19 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
         </Select>
       </FormControl>
       <FormControl sx={{ marginBottom: 5 }}>
-        <Typography gutterBottom color="primary" fontSize="1.06rem">
+        <Typography
+          gutterBottom
+          color="primary"
+          id="priority"
+          fontSize="1.06rem"
+        >
           Priority <sup>*</sup>
         </Typography>
         <RadioGroup
           row
-          id="priority"
           aria-labelledby="priority"
           name="priority"
-          tabIndex={1}
+          tabIndex={0}
           value={formik.values.priority}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             formik?.setFieldValue("priority", e?.currentTarget.value)
@@ -150,17 +156,21 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
         </RadioGroup>
       </FormControl>
       <FormControl sx={{ marginBottom: 5 }}>
-        <Typography gutterBottom color="primary" fontSize="1.06rem">
+        <Typography
+          gutterBottom
+          color="primary"
+          id="progress"
+          fontSize="1.06rem"
+        >
           Progress (%)
         </Typography>
         <Slider
-          id="progress"
           name="progress"
           value={toggleProgress}
           onChange={formik.handleChange}
           aria-labelledby="progress"
           valueLabelDisplay="auto"
-          tabIndex={1}
+          tabIndex={0}
           shiftStep={30}
           step={10}
           marks
@@ -175,7 +185,7 @@ const ConnectedForm: React.FunctionComponent<any> = (props: any) => {
         size="medium"
         label="Assigned To"
         required
-        tabIndex={1}
+        tabIndex={0}
         color="primary"
         disabled={true}
         placeholder="Enter email address"

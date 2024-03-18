@@ -23,12 +23,14 @@ export default async function handler(
     if (method === "PATCH") {
       await executeCreateTcktInputValidation(req, res);
       const ticket = req.body;
-      const ticketCollection = await connectDbCollection("tickets");
+      const { connection, dbCollection: ticketCollection } =
+        await connectDbCollection("tickets");
       const result = await ticketCollection.findOneAndUpdate(
         { ticketId: query.ticketId },
         { $set: { ...ticket } },
         { projection: { _id: 0 }, returnDocument: "after" }
       );
+      connection.close();
       if (!result) {
         res.status(404).json({
           status: "Not Found",

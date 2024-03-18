@@ -21,11 +21,6 @@ const CustomMuiComponents: Components = {
       },
     },
   },
-  MuiTextField: {
-    defaultProps: {
-      placeholder: "Enter your value",
-    },
-  },
   MuiCard: {
     styleOverrides: {
       root: {

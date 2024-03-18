@@ -9,8 +9,10 @@ export const authOptions = {
       type: "credentials",
       async authorize(credentials, req) {
         const { email } = await JSON.parse(credentials.email);
-        const userCollect = await connectDbCollection("users");
-        const user = await userCollect.findOne({ email: email });
+        const { connection, dbCollection: userCollection } =
+          await connectDbCollection("users");
+        const user = await userCollection.findOne({ email: email });
+        connection.close();
         if (!user) {
           return null;
         }
@@ -20,7 +22,7 @@ export const authOptions = {
   ],
   session: { strategy: "jwt" },
   jwt: {
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: 60 * 24,
   },
   callbacks: {
     async jwt({ token, account }) {

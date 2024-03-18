@@ -5,14 +5,14 @@ const ViewTicketFooter = (props: any) => {
   const { onClose, onDelete } = props;
   return (
     <>
-      <Button onClick={onDelete} variant="contained" color="error" tabIndex={1}>
+      <Button onClick={onDelete} variant="contained" color="error" tabIndex={0}>
         Delete
       </Button>
       <Button
         onClick={onClose}
         variant="outlined"
         color="secondary"
-        tabIndex={1}
+        tabIndex={0}
       >
         Close
       </Button>

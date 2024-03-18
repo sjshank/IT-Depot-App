@@ -18,10 +18,12 @@ export default async function handler(
   const { query, method } = req;
   try {
     if (method === "DELETE") {
-      const ticketCollection = await connectDbCollection("tickets");
+      const { connection, dbCollection: ticketCollection } =
+        await connectDbCollection("tickets");
       const result = await ticketCollection.findOneAndDelete({
         ticketId: query.ticketId,
       });
+      connection.close();
       if (!result) {
         res.status(404).json({
           status: "Not Found",

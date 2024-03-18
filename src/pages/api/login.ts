@@ -19,8 +19,10 @@ export default async function handler(
   if (req.method === "POST") {
     await executeLoginInputValidation(req, res);
     const { email } = req.body;
-    const userCollection = await connectDbCollection("users");
+    const { connection, dbCollection: userCollection } =
+      await connectDbCollection("users");
     const result = await userCollection.findOne({ email });
+    connection.close();
     if (!result) {
       res.status(404).json({
         status: "Not Found",

@@ -31,7 +31,8 @@ export default async function handler(
       assignedTo,
       createdBy,
     } = req.body;
-    const ticketCollection = await connectDbCollection("tickets");
+    const { connection, dbCollection: ticketCollection } =
+      await connectDbCollection("tickets");
     const result = await ticketCollection.insertOne({
       title,
       description,
@@ -44,6 +45,7 @@ export default async function handler(
       assignedTo: assignedTo,
       createdOn: `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`,
     });
+    connection.close();
     if (!result) {
       res.status(500).json({
         status: "Service Error",

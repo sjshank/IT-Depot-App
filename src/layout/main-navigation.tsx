@@ -35,7 +35,6 @@ const MainNavigation: React.FunctionComponent<{}> = (): JSX.Element => {
               href="/dashboard"
               component={NextLink}
               role="link"
-              tabIndex={1}
               title="Dashboard"
               sx={{ marginTop: 1, color: "#ffffff" }}
             >
@@ -45,31 +44,25 @@ const MainNavigation: React.FunctionComponent<{}> = (): JSX.Element => {
               href="/ticket/create"
               component={NextLink}
               role="link"
-              tabIndex={1}
+              tabIndex={0}
               title="Report Incident"
               sx={{ marginTop: 1, color: "#ffffff" }}
             >
               <AddBoxIcon fontSize="large" />
             </Link>
-            {session && (
-              <Typography
-                onClick={() =>
-                  signOut({ callbackUrl: process.env.NEXTAUTH_URL })
-                }
-                variant="subtitle2"
-                role="button"
-                tabIndex={1}
-                title="Logout"
-                sx={{
-                  marginBottom: 1,
-                  color: "#ffffff",
-                  textDecoration: "underline",
-                  cursor: "pointer",
-                }}
-              >
-                Logout
-              </Typography>
-            )}
+            <Typography
+              onClick={() => signOut({ callbackUrl: process.env.NEXTAUTH_URL })}
+              variant="subtitle2"
+              tabIndex={0}
+              sx={{
+                marginBottom: 1,
+                color: "#ffffff",
+                textDecoration: "underline",
+                cursor: "pointer",
+              }}
+            >
+              Logout
+            </Typography>
             {/* <Avatar
             variant="circular"
             sx={{

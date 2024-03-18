@@ -20,7 +20,7 @@ const TicketCardActions: React.FunctionComponent<TCardActionProps> = ({
         role="button"
         color="primary"
         padding={1}
-        tabIndex={3}
+        tabIndex={0}
         onClick={onViewTicketModal}
         sx={{ cursor: "pointer" }}
       >
@@ -31,7 +31,7 @@ const TicketCardActions: React.FunctionComponent<TCardActionProps> = ({
           href={`/ticket/update/${id}`}
           component={NextLink}
           role="link"
-          tabIndex={3}
+          tabIndex={0}
           color="secondary"
           padding={1}
         >

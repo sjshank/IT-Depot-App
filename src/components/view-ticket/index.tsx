@@ -1,7 +1,6 @@
 import { TicketContext } from "@/context/ticket-context";
 import React, { useContext } from "react";
 import dynamic from "next/dynamic";
-import TicketContent from "./view-ticket-content";
 import { useRouter } from "next/router";
 import useNotification from "@/hooks/useNotification";
 import { TNotification } from "@/types/ticket";
@@ -31,7 +30,14 @@ const ViewTicketContainer = () => {
 
   let TicketModalComponent = null;
   let TicketModalFooterComponent = null;
+  let TicketModalContentComponent = null;
   if (isTicketModalOpened && ticket !== null) {
+    TicketModalContentComponent = dynamic(
+      () => import("./view-ticket-content"),
+      {
+        ssr: false,
+      }
+    );
     TicketModalComponent = dynamic(() => import("@/ui/MuiDialog"), {
       ssr: false,
     });
@@ -63,7 +69,13 @@ const ViewTicketContainer = () => {
           }
           open={isTicketModalOpened}
           handleClose={hideTicketViewModal}
-          modalContent={<TicketContent ticket={ticket} />}
+          modalContent={
+            <>
+              {TicketModalContentComponent && (
+                <TicketModalContentComponent ticket={ticket} />
+              )}
+            </>
+          }
           modalId="ticket-detials"
           modalTitle={ticket.title}
         />

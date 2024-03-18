@@ -28,7 +28,7 @@ const CustomPaletteOptions: Partial<PaletteOptions> = {
     main: "#403d39",
   },
   error: {
-    main: "#FF3333",
+    main: "#c81d25",
   },
   text: {
     primary: "#1B1B1B",

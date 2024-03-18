@@ -60,7 +60,7 @@ const WithFormikForm = ({
                   variant="outlined"
                   disabled={formik.isSubmitting}
                   color="secondary"
-                  tabIndex={2}
+                  tabIndex={0}
                   sx={{ mx: 3 }}
                 >
                   Cancel
@@ -71,7 +71,7 @@ const WithFormikForm = ({
               variant="contained"
               disabled={formik.isSubmitting}
               type="submit"
-              tabIndex={1}
+              tabIndex={0}
             >
               {buttonLabel}
             </Button>
