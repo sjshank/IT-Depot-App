@@ -1,6 +1,6 @@
 # IT Garage
 
-    *IT Garage platform as software offers workflow management that enables organizations to manage incident problems related with access control, hardware, project & software.*
+    * IT Garage platform as software offers workflow management that enables organizations to manage incident problems related with access control, hardware, project & software. *
 
 ## Functional Features
 
